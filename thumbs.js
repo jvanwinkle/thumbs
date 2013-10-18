@@ -1,4 +1,4 @@
-// Thumbs.js 0.1.8
+// Thumbs.js 0.1.9
 //
 // Copyright (c) 2013 Pollenware.
 // Distributed under MIT license.
@@ -184,6 +184,9 @@
         loadUrl: function (fragmentOverride) {
             var fragment = this.fragment = this.getFragment(fragmentOverride);
             var matched = this.checkPreRouteHandler(this.handlers, 'pre-route_all', fragment);
+            if (matched) {
+                matched = this.checkPreRouteHandler(this.handlers, 'pre-route_', fragment);
+            }
             if (matched) {
                 matched = this._super('loadUrl', arguments);
                 if (!matched) {
